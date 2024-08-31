@@ -1,0 +1,1 @@
+export const PRODUCT_BASE_URL : string = "https://dummyjson.com/products"
