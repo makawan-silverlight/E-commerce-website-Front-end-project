@@ -1,6 +1,6 @@
 import { VscSettings } from "react-icons/vsc";
 import Category from "../Category";
-import PriceFilter from "../PriceFilter";
+// import PriceFilter from "../PriceFilter";
 
 function FilterProduct() {
   return (
@@ -9,7 +9,7 @@ function FilterProduct() {
 
       <form className="max-w-sm mx-auto">
         <Category/>
-        <PriceFilter/>
+        {/* <PriceFilter/> */}
 
         
         
