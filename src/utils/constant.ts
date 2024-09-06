@@ -26,3 +26,9 @@ export const CATEGORY_LIST = [
     "womens-shoes",
     "womens-watches"
   ]
+
+export const SORT_DATA = [
+    { name: "Name : A-Z",value:"A-Z"},
+    { name: "Price : Min - Max",value:"Min - Max"},
+    { name: "Price : Max - Min",value:"Max - Min"},
+]

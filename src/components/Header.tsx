@@ -25,7 +25,7 @@ function Header() {
     ]
     return (
         <>
-            <header className="fixed w-full bg-thirdary flex items-center justify-center py-8 text-header shadow-xl">
+            <header className="fixed w-full bg-thirdary flex items-center justify-center py-8 text-header shadow-xl z-[999]">
                 <div className="container flex justify-between items-center">
 
                     <Link to={"/"} id="logo" className="text-3xl font-black">
@@ -52,7 +52,7 @@ function Header() {
                             <Tooltip
                                 placement="bottom"
                                 className="border border-blue-gray-50 bg-white px-4 py-3 shadow-xl shadow-black/10"
-                                content={<div className="text-header capitalize font-semibold">favorite</div>}
+                                content={<div className="text-header capitalize font-semibold relative z-[9999]">favorite</div>}
                             >
                                 <div className="cursor-pointer">
                                     <FaRegHeart />
@@ -65,7 +65,7 @@ function Header() {
                             <Tooltip
                                 placement="bottom"
                                 className="border border-blue-gray-50 bg-white px-4 py-3 shadow-xl shadow-black/10"
-                                content={<div className="text-header capitalize font-semibold">cart</div>}
+                                content={<div className="text-header capitalize font-semibold relative z-[9999]">cart</div>}
                             >
                                 <div className="cursor-pointer">
                                     <RiShoppingBag4Line />
@@ -74,7 +74,7 @@ function Header() {
                         </div>
                     </div>
                 </div>
-                <div id="mobile-menu" className={`${openMenu ? "translate-x-0" : "translate-x-full"} md:hidden fixed w-80 h-screen bg-primary top-0 bottom-0 right-0 z-50 duration-500`}>
+                <div id="mobile-menu" className={`${openMenu ? "translate-x-0" : "translate-x-full"} md:hidden fixed w-80 h-screen bg-primary top-0 bottom-0 right-0 z-[100] duration-500`}>
                     <div className="flex justify-between items-center bg-header text-thirdary text-xl p-8" >
                         <h1 className="font-semibold">Close Menu</h1>
                         <div className="text-4xl hover:text-secondary cursor-pointer hover:scale-110 duration-300" onClick={() => { setOpenMenu(false) }}><IoClose /></div>
