@@ -1,16 +1,27 @@
 import { Link, useLocation } from "react-router-dom"
 import { linkData } from "../interface/links"
 import { useEffect, useState } from "react";
-
 import { Tooltip } from "@material-tailwind/react";
+import CartList from "./CartList";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 // icon component
 import { FaRegHeart } from "react-icons/fa6";
-import { RiShoppingBag4Line, RiShoppingBag4Fill } from "react-icons/ri";
+import { RiShoppingBag4Line } from "react-icons/ri";
 import { IoMenu, IoClose } from "react-icons/io5";
 
 function Header() {
     const [openMenu, setOpenMenu] = useState<boolean>(false)
+    const [openCart, setOpenCart] = useState<boolean>(false)
+    const [cartNum,setCartNum] = useState(0);
+    const cartProduct = useSelector((state: RootState) => state.CartProduct.CartProduct);
+    useEffect(()=>{
+        const couter = cartProduct.reduce((prev,current)=>{
+            return prev + (current.cartCount || 0)
+        },0)
+        setCartNum(couter > 99? 99:couter)
+    },[cartProduct])
     const location = useLocation();
     useEffect(() => {
         setOpenMenu(false);
@@ -59,9 +70,8 @@ function Header() {
                                 </div>
                             </Tooltip>
 
-
                         </Link>
-                        <div className="cursor-pointer hover:text-primary duration-300">
+                        <div onClick={()=>{setOpenCart(true)}} className="relative cursor-pointer hover:text-primary duration-300">
                             <Tooltip
                                 placement="bottom"
                                 className="border border-blue-gray-50 bg-white px-4 py-3 shadow-xl shadow-black/10"
@@ -71,9 +81,12 @@ function Header() {
                                     <RiShoppingBag4Line />
                                 </div>
                             </Tooltip>
+                            {cartNum > 0 && <div className="absolute -top-3 -right-4 flex justify-center items-center h-6 w-6 rounded-full bg-red-600 font-serif text-white text-xs font-semibold">{cartNum}</div>}
+                            
                         </div>
                     </div>
                 </div>
+
                 <div id="mobile-menu" className={`${openMenu ? "translate-x-0" : "translate-x-full"} md:hidden fixed w-80 h-screen bg-primary top-0 bottom-0 right-0 z-[100] duration-500`}>
                     <div className="flex justify-between items-center bg-header text-thirdary text-xl p-8" >
                         <h1 className="font-semibold">Close Menu</h1>
@@ -92,6 +105,9 @@ function Header() {
                     </nav>
                 </div>
                 <div onClick={() => { setOpenMenu(false) }} className={`${openMenu ? "opacity-80 translate-x-0" : "opacity-0 translate-x-[150%]"} md:hidden w-screen h-screen bg-black fixed top-0 bottom-0 right-0 left-0 duration-500 scale-150 blur-xl`}></div>
+
+                <CartList setOpenCart={setOpenCart} openCart={openCart} />
+
             </header>
             <div className="w-full h-[100px] bg-blue-900"></div>
         </>

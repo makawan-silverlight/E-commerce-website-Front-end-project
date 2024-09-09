@@ -6,6 +6,7 @@ import { RiShoppingBag4Line } from "react-icons/ri";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFavoriteToLocalStorage } from "../store/FavoriteSilce";
+import { setCartToLocalStorage } from "../store/CartProductSlice";
 import { RootState } from "../store/store";
 
 
@@ -18,9 +19,11 @@ function ProductCardItem(prop: propItem) {
 
     const dispatch = useDispatch();
     const favoriteProduct = useSelector((state: RootState) => state.favoriteProduct.favoriteProduct)
+    const cartProduct = useSelector((state: RootState) => state.CartProduct.CartProduct)
     
     const { product } = prop
     const [fav,setFav] = useState(product.favorite)
+
     function handleFavBtn () {
         if(fav === 1){
             setFav(0)
@@ -31,6 +34,28 @@ function ProductCardItem(prop: propItem) {
         }else{
             setFav(1)
             dispatch(setFavoriteToLocalStorage([...favoriteProduct,{...product,favorite:1}]))
+        }
+    }
+
+    function addCart (){
+
+        if(cartProduct.find((cartStore)=>{
+            return cartStore.id === product.id
+        })){
+            const newCartProduct = cartProduct.map((cartStore)=>{
+                if(cartStore.id === product.id){
+                    if((cartStore.cartCount||1) >= 99){
+                        return {...cartStore,cartCount: 99}
+                    }else{
+                        return {...cartStore,cartCount : (cartStore.cartCount || 1) + 1}
+                    }
+                }else{
+                    return cartStore
+                }
+            })
+            dispatch(setCartToLocalStorage(newCartProduct))
+        }else{
+            dispatch(setCartToLocalStorage([...cartProduct,{...product,cartCount:1}]))
         }
     }
 
@@ -60,12 +85,12 @@ function ProductCardItem(prop: propItem) {
                 <a href="#" className="flex justify-center items-center py-3 w-1/2  text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-blue-300">
                     View Details
                 </a>
-                <button className="flex justify-center items-center py-3 w-1/2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-blue-300">Add to cart</button>
+                <button onClick={addCart} className="flex justify-center items-center py-3 w-1/2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-blue-300">Add to cart</button>
             </div>
 
             <div className="absolute opacity-0 group-hover:opacity-100 duration-500 top-4 right-4 flex flex-col gap-2 justify-center items-center">
                 <button onClick={handleFavBtn} className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg">{(fav === 1 ? <FaHeart/>:<FaRegHeart/>)}</button>
-                <button className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg"><RiShoppingBag4Line/></button>
+                <button onClick={addCart} className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg"><RiShoppingBag4Line/></button>
             </div>
 
         </div>

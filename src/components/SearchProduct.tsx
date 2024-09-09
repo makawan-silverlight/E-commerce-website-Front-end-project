@@ -12,7 +12,7 @@ function SearchProduct(prop:searchProp) {
                     </svg>
                 </div>
                 <form>
-                    <input {...fieldSearch} type="search" id="default-search" className="block w-full p-2 ps-10 text-lg text-header border-2 border-secondary rounded-lg bg-white focus:ring-header focus:border-header outline-header " placeholder="Search Product Name..." />
+                    <input {...fieldSearch} type="search" id="default-search" className="block w-full p-2 ps-10 text-lg text-header border-2 border-secondary rounded-lg bg-white outline-header " placeholder="Search Product Name..." />
                 </form>
             </div>
         </div>

@@ -2,13 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import FetchProductSlice from './FetchProductSlice'
 import ProductAll from './ProductDataSlice'
 import FavoriteSlice from './FavoriteSilce'
+import CartProductSlice from './CartProductSlice'
 
 export const store = configureStore({
   reducer: {
     fetchProductAll : FetchProductSlice,
     ProductAll : ProductAll,
-    favoriteProduct : FavoriteSlice
-
+    favoriteProduct : FavoriteSlice,
+    CartProduct : CartProductSlice
   },
 })
 

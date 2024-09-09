@@ -17,6 +17,8 @@ function useFilterProduct() {
   const category = watch("category")
   const search = watch("search")
   const sort = watch("sort")
+  const fetchProductAll = useSelector((state: RootState) => state.fetchProductAll.fetchProductAll)
+  // const productAll = useSelector((state: RootState) => state.ProductAll.product)
 
 
   function sortBy(sort: "Min - Max" | "Max - Min" | "A-Z" | undefined, data: AllProductList[]) {
@@ -31,8 +33,6 @@ function useFilterProduct() {
     }
   }
 
-  const fetchProductAll = useSelector((state: RootState) => state.fetchProductAll.fetchProductAll)
-  // const productAll = useSelector((state: RootState) => state.ProductAll.product)
 
   function filterProduct(data: AllProductList[]) {
 

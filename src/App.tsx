@@ -7,6 +7,7 @@ import ErrorPage from "./pages/error-page";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import FavoritePage from './pages/favorite'
+import CheckoutPage from "./pages/checkout";
 
 function App() {
 
@@ -31,6 +32,10 @@ function App() {
         {
           path: "/favorite",
           element: <FavoritePage/>,
+        },
+        {
+          path: "/checkout",
+          element: <CheckoutPage/>,
         },
       ]
     },

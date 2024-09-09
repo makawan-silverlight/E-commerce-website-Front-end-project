@@ -18,7 +18,6 @@ function Product() {
           <FilterProduct fieldCategory={fieldCategory} fieldMax={fieldMax} fieldMin={fieldMin} />
           <ProductList fieldSearch={fieldSearch} fieldSort={fieldSort} />
         </section>
-        
       </main>
     )
   }
