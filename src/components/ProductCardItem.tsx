@@ -1,24 +1,37 @@
 import { Link } from "react-router-dom"
 import { AllProductList } from "../interface/allProductServices"
 import RatingStar from "./RatingStar"
-import { FaRegHeart } from "react-icons/fa6";
-import { FaHeart } from "react-icons/fa6";
+import { FaRegHeart,FaHeart } from "react-icons/fa6";
 import { RiShoppingBag4Line } from "react-icons/ri";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFavoriteToLocalStorage } from "../store/FavoriteSilce";
+import { RootState } from "../store/store";
+
 
 
 type propItem = {
     product: AllProductList
 }
 
-
-
 function ProductCardItem(prop: propItem) {
 
+    const dispatch = useDispatch();
+    const favoriteProduct = useSelector((state: RootState) => state.favoriteProduct.favoriteProduct)
+    
     const { product } = prop
-    const [fav,setFav] = useState(false)
+    const [fav,setFav] = useState(product.favorite)
     function handleFavBtn () {
-        setFav(!fav)
+        if(fav === 1){
+            setFav(0)
+            const unFav = favoriteProduct.filter((item)=>{
+                return item.id !== product.id
+            })
+            dispatch(setFavoriteToLocalStorage([...unFav]))
+        }else{
+            setFav(1)
+            dispatch(setFavoriteToLocalStorage([...favoriteProduct,{...product,favorite:1}]))
+        }
     }
 
     return (
@@ -51,7 +64,7 @@ function ProductCardItem(prop: propItem) {
             </div>
 
             <div className="absolute opacity-0 group-hover:opacity-100 duration-500 top-4 right-4 flex flex-col gap-2 justify-center items-center">
-                <button onClick={handleFavBtn} className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg">{(fav? <FaHeart/>:<FaRegHeart/>)}</button>
+                <button onClick={handleFavBtn} className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg">{(fav === 1 ? <FaHeart/>:<FaRegHeart/>)}</button>
                 <button className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg"><RiShoppingBag4Line/></button>
             </div>
 

@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { AllProductList } from '../interface/allProductServices'
 
@@ -17,7 +17,6 @@ export const FetchProductSlice = createSlice({
     reducers: {
         setFetchProductAll: (state, action: PayloadAction<AllProductList[]>) => {
             state.fetchProductAll = action.payload
-            console.log(current(state))
         }
     },
 })

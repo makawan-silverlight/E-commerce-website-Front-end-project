@@ -37,6 +37,8 @@ export interface AllProductList {
     meta: Meta
     images: string[]
     thumbnail: string
+    favorite?:number
+    cartCount?:number
 }
   
   export interface Dimensions {

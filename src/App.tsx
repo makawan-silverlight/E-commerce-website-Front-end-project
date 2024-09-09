@@ -6,6 +6,7 @@ import Root from "./pages/routes/root";
 import ErrorPage from "./pages/error-page";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
+import FavoritePage from './pages/favorite'
 
 function App() {
 
@@ -26,7 +27,11 @@ function App() {
         {
           path: "/about",
           element: <AboutPage/>,
-        }
+        },
+        {
+          path: "/favorite",
+          element: <FavoritePage/>,
+        },
       ]
     },
     

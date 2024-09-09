@@ -1,6 +1,13 @@
 import { ChangeEvent, useState } from "react";
 
-function priceFilter() {
+type priceProp = {
+    fieldMax: (n: number) => void 
+    fieldMin: (n: number) => void
+}
+
+function priceFilter(prop:priceProp) {
+
+    const {fieldMax,fieldMin} = prop
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(37000);
     const [minStamp, setMinStamp] = useState(0);
@@ -12,6 +19,7 @@ function priceFilter() {
             const newMinPrice = Math.min(Number(current), maxPrice - 3000)
             
             setMinPrice(newMinPrice);
+            
             let percent = ((newMinPrice - 0) / (37000 - 100)) * 100
 
             if (percent > 9) {
@@ -54,6 +62,7 @@ function priceFilter() {
             <div className="relative max-w-xl w-full">
                 <div>
                     <input type="range"
+                        onMouseUp={()=>{fieldMin(Number(minPrice))}}
                         step="100"
                         min={0}
                         max={37000}
@@ -62,6 +71,7 @@ function priceFilter() {
                         className="absolute pointer-events-none appearance-none z-40 h-2 w-full opacity-0 cursor-pointer" />
 
                     <input type="range"
+                        onMouseUp={()=>{fieldMax(Number(maxPrice))}}
                         step="100"
                         min={0}
                         max={37000}
@@ -81,11 +91,11 @@ function priceFilter() {
                 <div className="flex justify-between items-center pt-8">
                     <div className="flex justify-center items-center gap-2">
                         <span>Min</span>
-                        <input type="text" maxLength={5} value={minPrice} disabled  className="px-3 py-1 border bg-white border-gray-200 rounded-full w-20 text-center" />
+                        <input  type="text" maxLength={5} value={minPrice} disabled  className="px-3 py-1 border bg-white border-gray-200 rounded-full w-20 text-center" />
                     </div>
                     <div className="flex justify-center items-center gap-2">
                         Max
-                        <input type="text" maxLength={5} value={maxPrice} disabled className="px-3 py-1 border bg-white border-gray-200 rounded-full w-20 text-center" />
+                        <input  type="text" maxLength={5} value={maxPrice} disabled className="px-3 py-1 border bg-white border-gray-200 rounded-full w-20 text-center" />
                     </div>
                 </div>
 
