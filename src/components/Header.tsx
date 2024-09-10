@@ -37,7 +37,7 @@ function Header() {
     return (
         <>
             <header className="fixed w-full bg-thirdary flex items-center justify-center py-8 text-header shadow-xl z-[999]">
-                <div className="container flex justify-between items-center">
+                <div className="container flex justify-between items-center px-8">
 
                     <Link to={"/"} id="logo" className="text-3xl font-black">
                         <h1>SILVER</h1>
