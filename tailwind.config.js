@@ -1,13 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-
-const withMT = require("@material-tailwind/react/utils/withMT");
-
-module.exports = withMT({
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
-    "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -20,9 +15,9 @@ module.exports = withMT({
       }
     },
     fontFamily : {
-      'playFair' : ['Playfair Display','sans-serif'],
+      'playFair' : ['Playfair Display','serif'],
+      'serif' : ['serif'],
     }
   },
   plugins: [],
-});
-
+}

@@ -11,7 +11,7 @@ function RatingStar(prop: ratingProp) {
     <div className="flex justify-center items-center">
       {[...Array(5)].map((_, index) => {
         if (rating > index) {
-          return <div key={index} className="text-amber-600"><FaStar /></div>
+          return <div key={index} className="text-[#F6B022]"><FaStar /></div>
         } else {
           return <div key={index} className="text-gray-500"><FaRegStar /></div>
         }

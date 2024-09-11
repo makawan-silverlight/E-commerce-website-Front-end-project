@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import { linkData } from "../interface/links"
 import { useEffect, useState } from "react";
-import { Tooltip } from "@material-tailwind/react";
 import CartList from "./CartList";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -14,14 +13,14 @@ import { IoMenu, IoClose } from "react-icons/io5";
 function Header() {
     const [openMenu, setOpenMenu] = useState<boolean>(false)
     const [openCart, setOpenCart] = useState<boolean>(false)
-    const [cartNum,setCartNum] = useState(0);
+    const [cartNum, setCartNum] = useState(0);
     const cartProduct = useSelector((state: RootState) => state.CartProduct.CartProduct);
-    useEffect(()=>{
-        const couter = cartProduct.reduce((prev,current)=>{
+    useEffect(() => {
+        const couter = cartProduct.reduce((prev, current) => {
             return prev + (current.cartCount || 0)
-        },0)
-        setCartNum(couter > 99? 99:couter)
-    },[cartProduct])
+        }, 0)
+        setCartNum(couter > 99 ? 99 : couter)
+    }, [cartProduct])
     const location = useLocation();
     useEffect(() => {
         setOpenMenu(false);
@@ -58,31 +57,26 @@ function Header() {
                         <div className="block md:hidden text-3xl cursor-pointer hover:text-primary duration-300" onClick={() => { setOpenMenu(!openMenu) }}>
                             <IoMenu />
                         </div>
-                        <Link to={"/favorite"} className="cursor-pointer hover:text-primary duration-300">
+                        <Link to={"/favorite"} className="relative cursor-pointer group flex justify-center items-center hover:text-primary duration-300">
 
-                            <Tooltip
-                                placement="bottom"
-                                className="border border-blue-gray-50 bg-white px-4 py-3 shadow-xl shadow-black/10"
-                                content={<div className="text-header capitalize font-semibold relative z-[9999]">favorite</div>}
-                            >
-                                <div className="cursor-pointer">
-                                    <FaRegHeart />
-                                </div>
-                            </Tooltip>
+                            <div className="text-sm absolute bg-white px-3 py-2 rounded-md shadow-xl shadow-black/10 -bottom-12 hidden group-hover:block">
+                                <div className="text-header capitalize font-semibold relative z-[9999]">favorite</div>
+
+                            </div>
+                            <div className="cursor-pointer">
+                                <FaRegHeart />
+                            </div>
 
                         </Link>
-                        <div onClick={()=>{setOpenCart(true)}} className="relative cursor-pointer hover:text-primary duration-300">
-                            <Tooltip
-                                placement="bottom"
-                                className="border border-blue-gray-50 bg-white px-4 py-3 shadow-xl shadow-black/10"
-                                content={<div className="text-header capitalize font-semibold relative z-[9999]">cart</div>}
-                            >
-                                <div className="cursor-pointer">
-                                    <RiShoppingBag4Line />
-                                </div>
-                            </Tooltip>
+                        <div onClick={() => { setOpenCart(true) }} className="relative cursor-pointer group flex justify-center items-center hover:text-primary duration-300">
+                            <div className="text-sm absolute bg-white px-3 py-2 rounded-md shadow-xl shadow-black/10 -bottom-12 hidden group-hover:block">
+                                <div className="text-header capitalize font-semibold relative z-[9999]">cart</div>
+                            </div>
+                            <div className="cursor-pointer">
+                                <RiShoppingBag4Line />
+                            </div>
                             {cartNum > 0 && <div className="absolute -top-3 -right-4 flex justify-center items-center h-6 w-6 rounded-full bg-red-600 font-serif text-white text-xs font-semibold">{cartNum}</div>}
-                            
+
                         </div>
                     </div>
                 </div>

@@ -60,7 +60,7 @@ function ProductCardItem(prop: propItem) {
     }
 
     return (
-        <div className="relative group bg-background border border-gray-200 rounded-lg shadow-md p-6 hover:scale-[1.02] duration-300">
+        <div className="relative group flex flex-col justify-between bg-background border border-gray-200 rounded-lg shadow-md p-4 hover:scale-[1.02] duration-300">
 
             <Link to={"/"} className="absolute z-[-1] w-full h-full opacity-0 top-0 left-0 bottom-0 right-0"></Link>
 
