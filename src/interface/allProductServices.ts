@@ -14,6 +14,13 @@ export interface AxiosDataAllProductList {
     limit: number
 }
 
+export interface AxiosResponseSingleProduct{
+  data?:AllProductList
+  status: number | undefined
+  statusText?:string | undefined
+  error?: AxiosError<AxiosResponse<any, any>, any> | AxiosResponse<AxiosResponse<any, any>, any> | undefined
+}
+
 export interface AllProductList {
     id: number
     title: string

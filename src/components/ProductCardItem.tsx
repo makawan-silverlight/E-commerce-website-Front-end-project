@@ -62,15 +62,15 @@ function ProductCardItem(prop: propItem) {
     return (
         <div className="relative group flex flex-col justify-between bg-background border border-gray-200 rounded-lg shadow-md p-4 hover:scale-[1.02] duration-300">
 
-            <Link to={"/"} className="absolute z-[-1] w-full h-full opacity-0 top-0 left-0 bottom-0 right-0"></Link>
+            <Link to={`/product/${product.id}`} className="absolute z-[-1] w-full h-full opacity-0 top-0 left-0 bottom-0 right-0"></Link>
 
-            <Link to={"/"} className="flex justify-center items-center bg-thirdary rounded-lg relative overflow-hidden shadow-lg w-full h-52" >
+            <Link to={`/product/${product.id}`} className="flex justify-center items-center bg-thirdary rounded-lg relative overflow-hidden shadow-lg w-full h-52" >
                 <img className="object-cover h-52" src={product.images[0]} alt={product.title} />
             </Link>
 
             <div className="mt-5">
 
-                <Link to={"/"}>
+                <Link to={`/product/${product.id}`}>
                     <h5 className="mb-2 text-lg font-bold tracking-tight text-header hover:text-primary">{product.title}</h5>
                 </Link>
                 <p className="mb-3 text-sm font-normal text-primary capitalize">Category : {product.category}</p>
@@ -82,10 +82,10 @@ function ProductCardItem(prop: propItem) {
             </div>
 
             <div className="w-full flex justify-center items-center gap-2">
-                <a href="#" className="flex justify-center items-center py-3 w-1/2  text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-blue-300">
+                <Link to={`/product/${product.id}`} className="flex justify-center items-center py-3 w-1/2  text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-[#6AAA7C] focus:outline-none">
                     View Details
-                </a>
-                <button onClick={addCart} className="flex justify-center items-center py-3 w-1/2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-blue-300">Add to cart</button>
+                </Link>
+                <button onClick={addCart} className="flex justify-center items-center py-3 w-1/2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-[#6AAA7C] focus:outline-none">Add to cart</button>
             </div>
 
             <div className="absolute opacity-0 group-hover:opacity-100 duration-500 top-4 right-4 flex flex-col gap-2 justify-center items-center">

@@ -8,6 +8,7 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import FavoritePage from './pages/favorite'
 import CheckoutPage from "./pages/checkout";
+import ProductDetail from "./pages/productDetail";
 
 function App() {
 
@@ -36,6 +37,10 @@ function App() {
         {
           path: "/checkout",
           element: <CheckoutPage/>,
+        },
+        {
+          path: "/product/:id",
+          element: <ProductDetail/>,
         },
       ]
     },

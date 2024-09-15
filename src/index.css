@@ -3,29 +3,70 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply bg-background font-playFair
-    }
+  body {
+    @apply bg-background font-playFair
+  }
 }
 
-input[type=range]::-webkit-slider-thumb{
-    pointer-events: all;
-    -webkit-appearance: none;
-    width: 30px;
-    height: 30px;
-    background-color: red;
+input[type=range]::-webkit-slider-thumb {
+  pointer-events: all;
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  background-color: red;
 }
 
-  *::-webkit-scrollbar {
-    width: 8px;
-  }
+*::-webkit-scrollbar {
+  width: 8px;
+}
 
-  *::-webkit-scrollbar-track {
-    background: #2b2154;
-  }
+*::-webkit-scrollbar-track {
+  background: #2b2154;
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: #7d62ea;
-    border-radius: 999px;
-    border: 0px none #ffffff;
-  }
+*::-webkit-scrollbar-thumb {
+  background-color: #7d62ea;
+  border-radius: 999px;
+  border: 0px none #ffffff;
+}
+
+
+.swiper-pagination-bullet-active {
+  background: #FFFFFF !important;
+}
+
+.swiper-button-prev, .swiper-button-next{
+  padding: 1.5rem; 
+  background: #726BBC;
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-weight: bold;
+  transition: 300ms;
+  top: 5% !important;
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover{
+  background: #443686;
+}
+
+.swiper-button-prev{
+right: 60px;
+left: auto;
+}
+.swiper-button-next{
+  right: 0;
+  left: auto;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after{
+  font-size: 1.5rem;
+}
+
+.new .swiper-button-prev, .new .swiper-button-next{
+  background: #F5F5F5;
+  color:#443686
+}
+
+.new .swiper-button-prev:hover, .new .swiper-button-next:hover{
+  background: #E6DFED;
+}

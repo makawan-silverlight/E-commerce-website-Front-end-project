@@ -15,6 +15,7 @@ function Header() {
     const [openCart, setOpenCart] = useState<boolean>(false)
     const [cartNum, setCartNum] = useState(0);
     const cartProduct = useSelector((state: RootState) => state.CartProduct.CartProduct);
+    
     useEffect(() => {
         const couter = cartProduct.reduce((prev, current) => {
             return prev + (current.cartCount || 0)
@@ -22,8 +23,10 @@ function Header() {
         setCartNum(couter > 99 ? 99 : couter)
     }, [cartProduct])
     const location = useLocation();
+    
     useEffect(() => {
         setOpenMenu(false);
+        setOpenCart(false)
     }, [location.pathname])
 
     const links: linkData[] = [

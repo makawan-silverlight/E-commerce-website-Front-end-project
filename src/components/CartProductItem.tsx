@@ -57,7 +57,7 @@ function CartProductItem(prop: propCartProduct) {
     return (
         <div className="p-4 bg-primary rounded-xl flex justify-between items-center">
             <div className="flex justify-center items-center bg-thirdary rounded-xl relative overflow-hidden shadow-lg h-20 w-20" >
-                <img className="object-cover" src={product.images[0]} alt={product.title} />
+                <img loading="lazy" className="object-cover" src={product.images[0]} alt={product.title} />
             </div>
             <div className="flex flex-col justify-between w-8/12 h-20 text-background">
                 <h4 className="text-sm">{product.title}</h4>
