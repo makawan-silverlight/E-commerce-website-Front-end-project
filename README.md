@@ -16,7 +16,7 @@ create website using:
 - https://dummyjson.com/products
 
 ### DEMO
-- Live Site URL:
+- Live Site URL: [https://silver-ecommerce-store-frontend-project.vercel.app/](https://silver-ecommerce-store-frontend-project.vercel.app/)
 
 ### Screenshot
 
