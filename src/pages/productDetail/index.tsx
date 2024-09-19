@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../store/store"
 import { setFavoriteToLocalStorage } from "../../store/FavoriteSilce"
 import { setCartToLocalStorage } from "../../store/CartProductSlice"
+import ReviewBlog from "../../components/ReviewBlog"
+import { addToCartToast, deleteToast, favoriteToast } from "../../store/ToastSlice"
 
 
 function ProductDetail() {
@@ -42,7 +44,6 @@ function ProductDetail() {
                     setProduct(dataAddFav)
                 }
             }
-            console.log(data);
         }
     }
 
@@ -53,11 +54,24 @@ function ProductDetail() {
                 return item.id !== product?.id
             })
             dispatch(setFavoriteToLocalStorage([...unFav]))
+
+            const toastId = Date.now()
+            dispatch(favoriteToast({ title: `Unfavorite ${product?.title}`, id: toastId }))
+            setTimeout(() => {
+                dispatch(deleteToast(toastId))
+            }, 3000);
+
         } else {
             setFav(1)
             if (product) {
                 dispatch(setFavoriteToLocalStorage([...favoriteProduct, { ...product, favorite: 1 }]))
             }
+
+            const toastId = Date.now()
+            dispatch(favoriteToast({ title: `Favorite ${product?.title}`, id: toastId }))
+            setTimeout(() => {
+                dispatch(deleteToast(toastId))
+            }, 3000);
         }
     }
 
@@ -70,7 +84,7 @@ function ProductDetail() {
                     if (item.id === product.id) {
                         if ((item.cartCount || 1) >= 99) {
                             return { ...item, cartCount: 99 }
-                        }else{
+                        } else {
                             return { ...item, cartCount: (item.cartCount || 1) + 1 }
                         }
                     } else {
@@ -81,6 +95,11 @@ function ProductDetail() {
             } else {
                 dispatch(setCartToLocalStorage([...cartProduct, { ...product, cartCount: 1 }]))
             }
+            const toastId = Date.now()
+            dispatch(addToCartToast({ title: `Add ${product.title} to cart`, id: toastId }))
+            setTimeout(() => {
+                dispatch(deleteToast(toastId))
+            }, 3000);
         }
     }
 
@@ -96,7 +115,7 @@ function ProductDetail() {
                 <div className="w-full md:w-1/2 flex justify-center items-start gap-4">
                     <div className="w-[15%] h-full flex flex-col gap-4">
                         {product?.images.map((img, index) => {
-                            return <div key={index} onClick={() => { setIndexImg(index) }} className={`${index === indexImg ? "" : "brightness-95"} min-h-[15%] p-1 border-2 shadow-md border-white cursor-pointer hover:border-header bg-white rounded-md duration-300 hover:brightness-100`}><img src={img} alt="Single Product Image" /></div>
+                            return <div key={index} onClick={() => { setIndexImg(index) }} className={`${index === indexImg ? "" : "brightness-95"} p-1 border-2 shadow-md border-white cursor-pointer hover:border-header bg-white rounded-md duration-300 hover:brightness-100`}><img src={img} alt="Single Product Image" /></div>
                         })}
                     </div>
                     <div className="w-[85%] bg-white rounded-md shadow-xl flex justify-center items-center">
@@ -106,7 +125,7 @@ function ProductDetail() {
                 <div className="w-full md:w-1/2 flex flex-col gap-6 text-header">
                     <h1 className="text-4xl font-bold">{product?.title}</h1>
                     <div className="flex items-center gap-4 flex-wrap">
-                        <div className="flex items-center gap-4"><RatingStar rating={product?.rating || 0} />( {product?.rating || 0} )</div>
+                        <div className="flex items-center gap-4"><RatingStar rating={Math.round(product?.rating || 0)} />( {product?.rating || 0} )</div>
                         <p className="font-semibold">Category : <span className="font-normal">{product?.category || ""}</span></p>
                     </div>
                     <h2 className="text-4xl font-bold">$ {product?.price || 0}</h2>
@@ -119,6 +138,12 @@ function ProductDetail() {
                             Favorite<span className="text-2xl">{(fav === 1 ? <FaHeart /> : <FaRegHeart />)}</span>
                         </button>
                         <button onClick={addToCart} className="flex justify-center items-center gap-4 w-full md:w-64 p-3 font-medium text-center text-white bg-primary rounded-lg hover:bg-[#6AAA7C] focus:outline-none shadow-md">Add to cart <span className="text-2xl"><FaCartPlus /></span></button>
+                    </div>
+                    <div className="p-4 flex flex-col gap-4 bg-thirdary rounded-xl shadow-xl mt-2">
+                        <h4 className="text-2xl font-semibold pb-4 border-b-2 border-header">Reviews</h4>
+                        {product?.reviews.map((review, index) => {
+                            return <ReviewBlog key={index} review={review} />
+                        })}
                     </div>
                 </div>
             </section>

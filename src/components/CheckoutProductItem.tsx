@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { setCartToLocalStorage } from "../store/CartProductSlice";
 import { Link } from "react-router-dom";
+import { deleteToast, removeCartToast } from "../store/ToastSlice";
 
 
 type CheckoutItemProp = {
@@ -19,14 +20,14 @@ function CheckoutProductItem(prop: CheckoutItemProp) {
     const dispatch = useDispatch();
 
     function plusCartCount() {
-        const cartUpdate = cartProduct.map((cartItem)=>{
-            if(product.id === cartItem.id){
-                if((cartItem.cartCount||1) >= 99){
-                    return {...cartItem,cartCount: 99}
-                }else{
-                    return {...cartItem,cartCount: (cartItem.cartCount || 1) + 1}
+        const cartUpdate = cartProduct.map((cartItem) => {
+            if (product.id === cartItem.id) {
+                if ((cartItem.cartCount || 1) >= 99) {
+                    return { ...cartItem, cartCount: 99 }
+                } else {
+                    return { ...cartItem, cartCount: (cartItem.cartCount || 1) + 1 }
                 }
-            }else{
+            } else {
                 return cartItem
             }
         })
@@ -34,16 +35,21 @@ function CheckoutProductItem(prop: CheckoutItemProp) {
     }
 
     function minusCartCount() {
-        if((product.cartCount||1) <= 1){
-            const cartUpdate = cartProduct.filter((cartItem)=>{
+        if ((product.cartCount || 1) <= 1) {
+            const cartUpdate = cartProduct.filter((cartItem) => {
                 return product.id !== cartItem.id
             })
             dispatch(setCartToLocalStorage(cartUpdate))
-        }else{
-            const cartUpdate = cartProduct.map((cartItem)=>{
-                if(product.id === cartItem.id){
-                    return {...cartItem,cartCount: (cartItem.cartCount || 1) - 1}
-                }else{
+            const toastId = Date.now();
+            dispatch(removeCartToast({ title: `Remove ${product.title} from cart`, id: toastId }))
+            setTimeout(() => {
+                dispatch(deleteToast(toastId))
+            }, 3000);
+        } else {
+            const cartUpdate = cartProduct.map((cartItem) => {
+                if (product.id === cartItem.id) {
+                    return { ...cartItem, cartCount: (cartItem.cartCount || 1) - 1 }
+                } else {
                     return cartItem
                 }
             })
@@ -51,33 +57,38 @@ function CheckoutProductItem(prop: CheckoutItemProp) {
         }
     }
 
-    function deleteCart(){
-        const cartUpdate = cartProduct.filter((cartItem)=>{
+    function deleteCart() {
+        const cartUpdate = cartProduct.filter((cartItem) => {
             return product.id !== cartItem.id
         })
         dispatch(setCartToLocalStorage(cartUpdate))
+        const toastId = Date.now();
+        dispatch(removeCartToast({ title: `Remove ${product.title} from cart`, id: toastId }))
+        setTimeout(() => {
+            dispatch(deleteToast(toastId))
+        }, 3000);
     }
 
 
 
     return (
-        <div className="p-4 border-b text-header border-primary flex justify-between items-center">
+        <div className="p-4 border-b text-header border-primary flex flex-wrap justify-between items-center">
             <div className="w-20 md:w-[10%]">
                 <Link to={`/product/${product.id}`} className="flex justify-center items-center bg-thirdary rounded-xl relative overflow-hidden shadow-lg h-20 w-20" >
                     <img className="object-cover" src={product.images[0]} alt={product.title} />
                 </Link>
             </div>
             <Link to={`/product/${product.id}`} className="text-xl font-semibold hidden lg:block w-[40%]">{product.title}</Link>
-            <div className="flex flex-col justify-center items-center lg:w-[50%] w-8/12 h-20 ">
+            <div className="flex flex-col justify-center items-center lg:w-[50%] w-7/12 sm:w-8/12 min-h-20 gap-2 ">
                 <Link to={`/product/${product.id}`} className="text-sm lg:hidden w-full">{product.title}</Link>
-                <div className="flex justify-between items-center font-serif w-full">
-                    <div className=" leading-3 flex flex-col md:flex-row justify-center items-start md:items-center w-[40%]">
+                <div className="flex flex-wrap justify-between items-center w-full">
+                    <div className=" leading-3 flex flex-col lg:flex-row justify-center items-start lg:items-center w-full sm:w-[40%]">
                         <h5 className=" text-xl w-full md:w-1/2 flex justify-start md:justify-center">$ {(product.price * (product.cartCount || 0)).toFixed(2)}</h5>
                         <span className=" opacity-50 text-xs w-full md:w-1/2 flex justify-start md:justify-center">$ {product.price}</span>
                     </div>
                     <div className="flex justify-center items-center p-4 text-xl gap-2 w-[40%]">
                         <button onClick={minusCartCount} className="p-1 hover:bg-white duration-300 rounded-md"><TiMinus /></button>
-                        <h6>{product.cartCount}</h6>
+                        <h6 className="text-lg">{product.cartCount}</h6>
                         <button onClick={plusCartCount} className="p-1 hover:bg-white duration-300 rounded-md"><TiPlus /></button>
                     </div>
                     <div className=" w-[20%] flex justify-end">

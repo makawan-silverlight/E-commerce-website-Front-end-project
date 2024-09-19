@@ -91,11 +91,11 @@ function priceFilter(prop: priceProp) {
                 <div className="flex justify-between items-center pt-8 gap-2">
                     <div className="flex justify-center items-center gap-2">
                         <span>Min</span>
-                        <input type="text" maxLength={5} value={minPrice} disabled className="px-3 py-1 border bg-white border-gray-200 rounded-full w-20 text-center font-serif" />
+                        <input type="text" maxLength={5} value={minPrice} disabled className="px-3 py-1 border bg-white border-gray-200 rounded-full w-20 text-center" />
                     </div>
                     <div className="flex justify-center items-center gap-2">
                         <span>Max</span>
-                        <input type="text" maxLength={5} value={maxPrice} disabled className="px-3 py-1 border bg-white border-gray-200 rounded-full w-20 text-center font-serif" />
+                        <input type="text" maxLength={5} value={maxPrice} disabled className="px-3 py-1 border bg-white border-gray-200 rounded-full w-20 text-center" />
                     </div>
                 </div>
 

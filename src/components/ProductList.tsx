@@ -18,10 +18,10 @@ function ProductList(prop:propProductList) {
     return (
         <main className="bg-thirdary rounded-xl shadow-xl w-full mb-5">
             <div>
-                <div className="text-4xl text-header font-semibold p-6 border-b-2 h-[82px] leading-3" >
+                <div className="text-4xl text-header font-semibold p-6 border-b-2 h-[82px] leading-3 flex flex-wrap gap-4 mt-2" >
                     Product All
-                    <span className="text-base text-primary opacity-70 font-medium ml-4">
-                        ( Found Product <span className="font-serif">{productAll.data.length}</span> List )
+                    <span className="text-base text-primary opacity-70 font-medium">
+                        ( Found Product <span>{productAll.data.length}</span> List )
                     </span>
                 </div>
                 <div className="px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">

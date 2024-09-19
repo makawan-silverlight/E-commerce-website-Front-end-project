@@ -22,11 +22,14 @@ function Header() {
         }, 0)
         setCartNum(couter > 99 ? 99 : couter)
     }, [cartProduct])
+    
     const location = useLocation();
+
     
     useEffect(() => {
         setOpenMenu(false);
         setOpenCart(false)
+        window.scrollTo(0, 0);
     }, [location.pathname])
 
     const links: linkData[] = [
@@ -78,7 +81,7 @@ function Header() {
                             <div className="cursor-pointer">
                                 <RiShoppingBag4Line />
                             </div>
-                            {cartNum > 0 && <div className="absolute -top-3 -right-4 flex justify-center items-center h-6 w-6 rounded-full bg-red-600 font-serif text-white text-xs font-semibold">{cartNum}</div>}
+                            {cartNum > 0 && <div className="absolute -top-3 -right-4 flex justify-center items-center h-6 w-6 rounded-full bg-red-600 text-white text-xs font-semibold">{cartNum}</div>}
 
                         </div>
                     </div>

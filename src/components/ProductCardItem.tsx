@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom"
 import { AllProductList } from "../interface/allProductServices"
 import RatingStar from "./RatingStar"
-import { FaRegHeart,FaHeart } from "react-icons/fa6";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { RiShoppingBag4Line } from "react-icons/ri";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFavoriteToLocalStorage } from "../store/FavoriteSilce";
 import { setCartToLocalStorage } from "../store/CartProductSlice";
 import { RootState } from "../store/store";
+import { addToCartToast, deleteToast,favoriteToast } from "../store/ToastSlice";
 
 
 
@@ -20,43 +21,59 @@ function ProductCardItem(prop: propItem) {
     const dispatch = useDispatch();
     const favoriteProduct = useSelector((state: RootState) => state.favoriteProduct.favoriteProduct)
     const cartProduct = useSelector((state: RootState) => state.CartProduct.CartProduct)
-    
-    const { product } = prop
-    const [fav,setFav] = useState(product.favorite)
 
-    function handleFavBtn () {
-        if(fav === 1){
+    const { product } = prop
+    const [fav, setFav] = useState(product.favorite)
+
+    function handleFavBtn() {
+        if (fav === 1) {
             setFav(0)
-            const unFav = favoriteProduct.filter((item)=>{
+            const unFav = favoriteProduct.filter((item) => {
                 return item.id !== product.id
             })
             dispatch(setFavoriteToLocalStorage([...unFav]))
-        }else{
+
+            const toastId = Date.now()
+            dispatch(favoriteToast({ title: `Unfavorite ${product.title}`, id: toastId }))
+            setTimeout(() => {
+                dispatch(deleteToast(toastId))
+            }, 3000);
+        } else {
             setFav(1)
-            dispatch(setFavoriteToLocalStorage([...favoriteProduct,{...product,favorite:1}]))
+            dispatch(setFavoriteToLocalStorage([...favoriteProduct, { ...product, favorite: 1 }]))
+
+            const toastId = Date.now()
+            dispatch(favoriteToast({ title: `Favorite ${product.title}`, id: toastId }))
+            setTimeout(() => {
+                dispatch(deleteToast(toastId))
+            }, 3000);
         }
     }
 
-    function addCart (){
-
-        if(cartProduct.find((cartStore)=>{
+    function addCart() {
+        if (cartProduct.find((cartStore) => {
             return cartStore.id === product.id
-        })){
-            const newCartProduct = cartProduct.map((cartStore)=>{
-                if(cartStore.id === product.id){
-                    if((cartStore.cartCount||1) >= 99){
-                        return {...cartStore,cartCount: 99}
-                    }else{
-                        return {...cartStore,cartCount : (cartStore.cartCount || 1) + 1}
+        })) {
+            const newCartProduct = cartProduct.map((cartStore) => {
+                if (cartStore.id === product.id) {
+                    if ((cartStore.cartCount || 1) >= 99) {
+                        return { ...cartStore, cartCount: 99 }
+                    } else {
+                        return { ...cartStore, cartCount: (cartStore.cartCount || 1) + 1 }
                     }
-                }else{
+                } else {
                     return cartStore
                 }
             })
             dispatch(setCartToLocalStorage(newCartProduct))
-        }else{
-            dispatch(setCartToLocalStorage([...cartProduct,{...product,cartCount:1}]))
+        } else {
+            dispatch(setCartToLocalStorage([...cartProduct, { ...product, cartCount: 1 }]))
         }
+        const toastId = Date.now()
+        dispatch(addToCartToast({ title: `Add ${product.title} to cart`, id: toastId }))
+        setTimeout(() => {
+            dispatch(deleteToast(toastId))
+        }, 3000);
     }
 
     return (
@@ -74,9 +91,9 @@ function ProductCardItem(prop: propItem) {
                     <h5 className="mb-2 text-lg font-bold tracking-tight text-header hover:text-primary">{product.title}</h5>
                 </Link>
                 <p className="mb-3 text-sm font-normal text-primary capitalize">Category : {product.category}</p>
-                <div className="flex justify-start items-center gap-2 mb-3"><RatingStar rating={Math.round(product.rating)} /> <span className="text-xs font-serif font-normal text-primary">( Rating {product.rating} )</span></div>
+                <div className="flex justify-start items-center gap-2 mb-3"><RatingStar rating={Math.round(product.rating)} /> <span className="text-xs font-normal text-primary">( Rating {product.rating} )</span></div>
                 <div className="flex justify-between items-center gap-6 mb-4">
-                    <p className="text-3xl font-serif font-bold text-header">$ {product.price}</p>
+                    <p className="text-3xl font-bold text-header">$ {product.price}</p>
                 </div>
 
             </div>
@@ -89,8 +106,8 @@ function ProductCardItem(prop: propItem) {
             </div>
 
             <div className="absolute opacity-0 group-hover:opacity-100 duration-500 top-4 right-4 flex flex-col gap-2 justify-center items-center">
-                <button onClick={handleFavBtn} className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg">{(fav === 1 ? <FaHeart/>:<FaRegHeart/>)}</button>
-                <button onClick={addCart} className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg"><RiShoppingBag4Line/></button>
+                <button onClick={handleFavBtn} className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg">{(fav === 1 ? <FaHeart /> : <FaRegHeart />)}</button>
+                <button onClick={addCart} className=" w-10 h-10 border-2 border-header hover:bg-header hover:text-white text-header bg-white rounded-full flex justify-center items-center text-lg"><RiShoppingBag4Line /></button>
             </div>
 
         </div>

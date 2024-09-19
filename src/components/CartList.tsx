@@ -51,11 +51,11 @@ function CartList(prop: cartListProp) {
                 <div className="h-[200px] w-full p-4 mt-2">
                     <div className="bg-[#584D99] flex flex-col justify-between w-full h-full rounded-lg shadow-md p-4 text-background ">
                         <div className="opacity-70">
-                            <div className="flex justify-between items-center"><h5>Sub Total</h5><span className="font-serif">$ {totalPrice.toFixed(2)}</span></div>
-                            <div className="flex justify-between items-center"><h5>Shipping Cost</h5><span className="font-serif">$ {totalPrice <= 0? 0 : shippingCost}</span></div>
-                            <div className="flex justify-between items-center"><h5>Discount<span className="text-xs ml-2">( free Shipping )</span></h5><span className="font-serif">$ {totalPrice <= 0? 0 : discount}</span></div>
+                            <div className="flex justify-between items-center"><h5>Sub Total</h5><span>$ {totalPrice.toFixed(2)}</span></div>
+                            <div className="flex justify-between items-center"><h5>Shipping Cost</h5><span>$ {totalPrice <= 0? 0 : shippingCost}</span></div>
+                            <div className="flex justify-between items-center"><h5>Discount<span className="text-xs ml-2">( free Shipping )</span></h5><span>$ {totalPrice <= 0? 0 : discount}</span></div>
                         </div>
-                        <div className="flex flex-wrap justify-between items-center text-4xl font-bold" ><h2>Total</h2><span className="font-serif max-w-[320px] overflow-x-auto">$ {(totalPrice + shippingCost - discount).toFixed(2)}</span></div>
+                        <div className="flex flex-wrap justify-between items-center text-3xl font-bold" ><h2>Total</h2><span className=" max-w-[320px] overflow-x-auto overflow-y-hidden flex flex-nowrap items-end gap-2">$ <span>{(totalPrice + shippingCost - discount).toFixed(2)}</span></span></div>
                     </div>
                 </div>
                 <Link to={"/checkout"} onClick={()=>{setOpenCart(false)}} className="w-full flex justify-center items-center  px-4 pb-4">

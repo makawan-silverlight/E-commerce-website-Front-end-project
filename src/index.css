@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-background font-playFair
+    @apply bg-background font-poppins
   }
 }
 

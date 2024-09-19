@@ -5,7 +5,6 @@ import ProductCardItem from "../../components/ProductCardItem";
 
 function FavoritePage() {
   const favoriteProduct = useSelector((state: RootState) => state.favoriteProduct.favoriteProduct)
-  console.log(favoriteProduct);
 
   return (
     <main className="w-full flex flex-col items-center justify-center" >

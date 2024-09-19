@@ -57,7 +57,6 @@ function Home() {
 
   useEffect(() => {
     callData();
-    console.log(ProductAll)
 
   }, [])
 
@@ -121,7 +120,7 @@ function Home() {
               }}
               className="mySwiper px-4 py-8 pt-24"
             >
-              <h2 className="absolute top-0 left-0 w-full text-4xl font-semibold text-header py-4 border-b-2 border-header">Recommend</h2>
+              <h2 className="absolute top-0 left-0 w-full text-4xl font-semibold text-primary py-4 border-b-2 border-primary">Recommend</h2>
 
               {recommendProduct.map((product, index) => {
 
@@ -165,7 +164,7 @@ function Home() {
               }}
               className="mySwiper px-4 py-8 pt-24"
             >
-              <h2 className="absolute top-0 left-0 w-full text-4xl font-semibold text-white py-4 border-b-2 border-white">New Arrivals </h2>
+              <h2 className="absolute top-0 left-0 w-full text-4xl font-semibold text-header py-4 border-b-2 border-header">New Arrivals </h2>
 
               {newArrival.map((product, index) => {
 

@@ -3,13 +3,15 @@ import FetchProductSlice from './FetchProductSlice'
 import ProductAll from './ProductDataSlice'
 import FavoriteSlice from './FavoriteSilce'
 import CartProductSlice from './CartProductSlice'
+import ToastSlice from './ToastSlice'
 
 export const store = configureStore({
   reducer: {
     fetchProductAll : FetchProductSlice,
     ProductAll : ProductAll,
     favoriteProduct : FavoriteSlice,
-    CartProduct : CartProductSlice
+    CartProduct : CartProductSlice,
+    toast : ToastSlice
   },
 })
 
