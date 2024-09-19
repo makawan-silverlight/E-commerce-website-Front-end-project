@@ -70,3 +70,16 @@ left: auto;
 .new .swiper-button-prev:hover, .new .swiper-button-next:hover{
   background: #E6DFED;
 }
+
+@media screen and (max-width: 400px) {
+  .swiper-button-prev, .swiper-button-next{
+    padding: 1rem 1.2rem;
+  }
+  .swiper-button-prev::after, .swiper-button-next::after{
+    font-size: 1rem;
+  }
+  .swiper-button-prev{
+    right: 45px;
+    left: auto;
+    }
+}

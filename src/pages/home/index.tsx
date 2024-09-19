@@ -120,7 +120,7 @@ function Home() {
               }}
               className="mySwiper px-4 py-8 pt-24"
             >
-              <h2 className="absolute top-0 left-0 w-full text-4xl font-semibold text-primary py-4 border-b-2 border-primary">Recommend</h2>
+              <h2 className="absolute top-0 left-0 w-full text-xl sm:text-4xl font-semibold text-primary py-6 sm:py-4 border-b-2 border-primary">Recommend</h2>
 
               {recommendProduct.map((product, index) => {
 
@@ -164,7 +164,7 @@ function Home() {
               }}
               className="mySwiper px-4 py-8 pt-24"
             >
-              <h2 className="absolute top-0 left-0 w-full text-4xl font-semibold text-header py-4 border-b-2 border-header">New Arrivals </h2>
+              <h2 className="absolute top-0 left-0 w-full text-xl sm:text-4xl font-semibold text-header py-6 sm:py-4 border-b-2 border-header">New Arrivals </h2>
 
               {newArrival.map((product, index) => {
 

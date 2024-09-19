@@ -8,17 +8,17 @@ function Footer() {
             <div className="container flex flex-col justify-between px-8 mt-4">
                 <div className='flex flex-wrap space-x-8 md:space-x-0 space-y-4 md:space-y-0 w-full  mt-2'>
                     {/* Company */}
-                    <div className='md:w-3/4 lg:w-[45%] pr-8 space-y-6' >
+                    <div className='md:w-3/4 lg:w-[45%] max-w-[90%] sm:pr-8 space-y-6' >
                         <div className='flex items-center gap-4'>
                             <div className='w-16 h-16 text-5xl flex justify-start items-center'><FaStore /></div>
                             <h1 className=' text-4xl font-black '>SILVER</h1>
                         </div>
-                        <p className='lg:w-4/5'>Ecommerce Website using : React TypeScript TailwindCSS
+                        <p className='w-full lg:w-4/5'>Ecommerce Website using : React TypeScript TailwindCSS
                             Redux Toolkit Axios API:DummyJSON React-Router-Dom React-Hook-Form
                         </p>
-                        <div className='flex'>
-                            <input className='bg-background text-header p-2 px-4 rounded-md rounded-r-none rounded-br-none outline-none' type="email" placeholder='Your Email' />
-                            <button className='bg-primary p-2 rounded-r-md -ml-1 hover:bg-[#6AAA7C] duration-300'>Subscribe</button>
+                        <div className='flex max-w-[80%]'>
+                            <input className='bg-background text-header max-w-[240px] w-full flex-shrink-0 py-2 sm:px-2 rounded-md rounded-r-none rounded-br-none outline-none' type="email" placeholder='Your Email' />
+                            <button className='bg-primary w-full py-2 sm:px-2 rounded-r-md max-w-[96px] sm:-ml-1 hover:bg-[#6AAA7C] duration-300'>Subscribe</button>
                         </div>
 
                     </div>
@@ -55,7 +55,7 @@ function Footer() {
                     </div>
                 </div>
                 <hr className='mt-10' />
-                <div className=' flex justify-between items-center mt-10 mb-5'>
+                <div className=' flex flex-col sm:flex-row gap-4 justify-between items-center mt-10 mb-5'>
                     <p className='font-light text-background font-serif'>© Makawan Saengngoen Silver Store 2024.</p>
                     <nav className='flex gap-4 text-4xl'>
                         <Link to="https://www.facebook.com/" target='_blank'><FaSquareFacebook /></Link>
