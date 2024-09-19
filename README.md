@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# SILVER ECOMMERCE STORE WEBSITE
+Frontend Project Ecommerce website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+create website using:
+- React TS (vite)
+- Tailwind CSS
+- Type Script
+- React-Hook Form
+- React-Router-Dom
+- Axios
+- Redux-Toolkit
+- Swiper
+- React-Icons
 
-Currently, two official plugins are available:
+### API
+- https://dummyjson.com/products
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### DEMO
+- Live Site URL:
 
-## Expanding the ESLint configuration
+### Screenshot
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+-HomePage
 
-- Configure the top-level `parserOptions` property like this:
+![image](https://github.com/user-attachments/assets/a80aed38-9c9a-42b4-b827-97962dda653e)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+-ProductPage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+![image](https://github.com/user-attachments/assets/d1441873-cdbc-40d7-84dd-3410f6273cb9)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+-favoritePage
+
+![image](https://github.com/user-attachments/assets/9c1c5991-e84e-4e0f-9fab-487a4ee0fc56)
+
+
+-CheckoutPage
+
+![image](https://github.com/user-attachments/assets/25bd718c-cf07-4a83-9533-3913027b97bf)
+
+
+-SingleProductPage
+
+![image](https://github.com/user-attachments/assets/2f3a0d69-d4e4-45a1-923c-945faace0442)
+
+
