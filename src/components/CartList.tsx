@@ -34,7 +34,7 @@ function CartList(prop: cartListProp) {
 
 
     return (
-        <section id="cart-main" className={`${openCart ? "translate-x-0" : "translate-x-[130%]"} fixed w-full sm:w-96 min-h-screen overflow-auto bg-header top-0 bottom-0 right-0 z-[100] duration-700 shadow-[-10px_-10px_50px_0px_rgba(0,0,0,.5)]`} >
+        <section id="cart-main" className={`${openCart ? "translate-x-0" : "translate-x-[130%]"} fixed w-full sm:w-[420px] min-h-screen overflow-auto bg-header top-0 bottom-0 right-0 z-[100] duration-700 shadow-[-10px_-10px_50px_0px_rgba(0,0,0,.5)]`} >
             <main className="w-full h-full relative">
                 <div className="text-white text-4xl h-[100px] p-6 flex justify-start items-center">
                     <button className="text-white hover:text-primary hover:scale-105 duration-300" onClick={() => { setOpenCart(false) }}><LuArrowRightToLine /></button>
